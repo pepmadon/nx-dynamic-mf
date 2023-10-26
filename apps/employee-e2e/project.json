@@ -1,0 +1,33 @@
+{
+  "name": "employee-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/employee-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/employee-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "employee:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "employee:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "employee:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/employee-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["employee"]
+}
