@@ -1,8 +1,10 @@
 import { ModuleFederationConfig } from '@nx/webpack';
 
 const config: ModuleFederationConfig = {
-  name: 'employee',
-  remotes: ['login', 'todo'],
+  name: 'todo',
+  exposes: {
+    './Module': 'apps/todo/src/app/remote-entry/entry.module.ts',
+  },
 };
 
 export default config;
